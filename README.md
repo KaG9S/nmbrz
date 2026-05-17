@@ -53,5 +53,6 @@ Copyright: __C: KaG9S__
 
 Author: @KaG9S
 
-Documentation: [DOCS.md](DOCS.md)
-Manifest: [MANIFEST.md](MANIFEST.md)
+- Documentation: [DOCS.md](md-files/DOCS.md)
+- Manifest: [MANIFEST.md](md-files/MANIFEST.md)
+- Security policy: [SECURITY.md](md-files/SECURITY.md)
