@@ -9,12 +9,6 @@ __pycache__/
 .venv
 venv/
 
-# Distribution
-build/
-dist/
-*.egg-info/
-.eggs/
-
 # PyCharm / Vscode / IDE and Editors
 .idea/
 .vscode/

@@ -14,22 +14,14 @@ Smallest module for numbers!}}$
 
 # 0. How to install
 
-WAY I: via releases page (not recomented)
-1. Download lastest realese: zip-file from releases page (unpack it)
-2. Move this folder to your local folder (`C:/ProgramFiles/Python/Lib`) or VEnv* (`path/to/venv/Lib/python[version]/site-packages`)
+1. Download the lastest realese from releases page: nmbrz folder or zip-file (unpack it)
+2. Move this folder to your local folder (`C:/ProgramFiles/Python/Lib`) or virtual env (`path/to/venv/Lib/site-packages`)
 3. Write into your code
 ```python
 from nmbrz import *
 ```
-
-WAY II: via python-pip
-1. **[Opional]** Create VEnv: `python -m venv [path to venv]`
-2. Upgrade pip: `python -m pip install --upgrade pip`
-3. Install/Upgrade package: `python -m pip install --upgrade nmbrz`
-
-AFTER
-1. Run. If you got error, reinstall package in other way.
-2. Read our [documentation](docs.md).
+4. Run. If you got error, reinstall package in other way.
+5. Read our [documentation](docs.md).
 
 # 1. Nmbrz module
 
@@ -51,12 +43,13 @@ For examlpe:
 
 # The end
 Thanks for using my package.
-
-License: [MIT](LICENSE.md). Copyright: @KaG9S/nmbrz 2026
+License: [MIT](LICENSE.md)
 
 Contact:
 - TG: [@KaG9S](https://t.me/KaG9S)
 - Email: jokageogik@gmail.com
+
+Copyright: __C: KaG9S__
 
 Author: @KaG9S
 
