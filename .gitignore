@@ -22,3 +22,23 @@ test.*
 drafts/
 downloads/
 example.*
+
+# Distribution
+dist/
+sdist/
+build/
+.Python
+.pypirc
+.installed.cfg
+dist/
+eggs/
+.eggs/
+*.egg
+*.egg-info/
+develop-eggs/
+lib/
+lib64/
+parts/
+var/
+wheels/
+share/python-wheels/
