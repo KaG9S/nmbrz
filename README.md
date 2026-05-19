@@ -1,7 +1,7 @@
 # Nmbrz
 
-$\color{yellow}{\text{Improving calculations acuracy with Python.
-Smallest module for numbers!}}$
+<p style="color: yellow;">Improving calculations acuracy with Python.
+Smallest module for numbers!</p>
 
 ---
 
@@ -55,4 +55,4 @@ Author: @KaG9S
 
 - Documentation: [DOCS.md](md-files/DOCS.md)
 - Manifest: [MANIFEST.md](md-files/MANIFEST.md)
-- Security policy: [SECURITY.md](md-files/SECURITY.md)
+- Security policy: [SECURITY.md](SECURITY.md)
