@@ -2,19 +2,23 @@
 
 ---
 
-- [Full documetation for Nmbrz module](#full-documetation-for-nmbrz-module)
-- [0. Install](#0-install)
-- [1. SDE and nmbr's](#1-sde-and-nmbrs)
-  - [1.1. Start](#11-start)
-  - [1.2. Operations](#12-operations)
-    - [1.2.0 Type convertions](#120-type-convertions)
-    - [1.2.1. Math](#121-math)
-    - [1.2.2. Iterations](#122-iterations)
-    - [1.2.3. Comparison](#123-comparison)
-    - [1.2.4. Bool operations](#124-bool-operations)
-- [2. Mth module](#2-mth-module)
-  - [2.1. Function usage](#21-function-usage)
-  - [2.2. Constants' formulas](#22-constants-formulas)
+Table of contents:
+
+0. [Install](#0-install)
+1. [SDE and nmbr's](#1-sde-and-nmbrs)
+  1. [Start](#11-start)
+  2. [Operations](#12-operations)
+    0. [Type convertions](#120-type-convertions)
+    1. [Math](#121-math)
+    2. [Iterations](#122-iterations)
+    3. [Comparison](#123-comparison)
+    4. [Bool operations](#124-bool-operations)
+2. [Mth module](#2-mth-module)
+  1. [Function usage](#21-function-usage)
+  2. [Constants' formulas](#22-constants-formulas)
+3. [UTILS](#3-utils)
+  1. [Files](#31-files)
+  2. [Docs](#32-docs-for-utils)
 
 ---
 
@@ -158,3 +162,22 @@ $\pi=\sum_{i}^{n}{\frac{(-1)^{i}*4}{2i+1}}$
 2. e (Eulers number):
 
 $e=(1+\frac{1}{n})^{n}$
+
+# 3. UTILS
+
+There is the folder (i will take [__init__.py](../src/nmbrz/utils/__init__.py) as a reference) named `utils`, because there're can be a lot of utilites for nmbrz package like: timer, [SOME USEFUL UTILS HERE], etc.
+
+## 3.1. Files
+
+This [folder](../src/nmbrz/utils/) is root for this module.
+
+Tree:
+- [`__init__.py`](../src/nmbrz/utils/__init__.py):
+  initalisation for module
+- [`__main__.py`](../src/nmbrz/utils/__main__.py):
+  some small utils for nmbrz work
+
+## 3.2. Docs for utils
+
+I don't know where to put a large [NOT NOW] file for this module, so it will be [here](utils.md)
+

@@ -1,14 +1,16 @@
-# Nmbrz
+# Nmbrz v0.1
 
 <p style="color: yellow;">Improving calculations acuracy with Python.
 Smallest module for numbers!</p>
 
 ---
 
-- [Nmbrz](#nmbrz)
-- [0. How to install](#0-how-to-install)
-- [1. Nmbrz module](#1-nmbrz-module)
-- [The end](#the-end)
+**Table of contents:**
+
+0. [How to install](#0-how-to-install)
+1. [Some docs](#1-some-docs)
+   1. [Nmbrz module (SDE)](#11-nmbrz-module-sde-file)
+   2. [UTILS](#12-utils-file)
 
 ---
 
@@ -23,7 +25,11 @@ from nmbrz import *
 4. Run. If you got error, reinstall package in other way.
 5. Read our [documentation](docs.md).
 
-# 1. Nmbrz module
+# 1. Some docs
+
+Full docs markdown file: [md-files/DOCS.md](md-files/DOCS.md)
+
+## 1.1. Nmbrz module (SDE) [FILE](src/nmbrz/sde.py)
 
 Using custom class `Nmbr` which can save number in new reprasantation "SDE":
 
@@ -41,6 +47,33 @@ For examlpe:
 - 0 = `0 * 0 * (10 ** 0)` = `(0, [0], 0)`;
 - -45678900 = `-1 * 456'789 * (10 ** 2)` = `(-1, [456, 789], 2)`.
 
+## 1.2. UTILS [FILE](src/nmbrz/utils/__init__.py)
+
+**This module contains some useful classes, functions, variables and other to make expirence easier.**
+
+> [!NOTE]
+> There's a full docs for utils module: [md-files/utils.md](md-files/utils.md)
+
+Table of contents:
+- [main.py](src/nmbrz/utils/__main__.py):
+  - [timer()](#utils-timer)
+
+---
+
+### UTILS: TIMER()
+
+**A decorator to get a time for a function**
+
+Usage:
+```python
+@timer
+def my_function():
+    pass
+```
+
+
+---
+
 # The end
 Thanks for using my package.
 License: [MIT](LICENSE.md)
@@ -49,7 +82,7 @@ Contact:
 - TG: [@KaG9S](https://t.me/KaG9S)
 - Email: jokageogik@gmail.com
 
-Copyright: __C: KaG9S__
+Copyright: KaG9S/nmbrz 2026 MIT
 
 Author: @KaG9S
 
