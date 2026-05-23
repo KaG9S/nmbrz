@@ -68,7 +68,6 @@ These nmbr's can be coverted in to:
 3.141592653589E+0
 ```
 
-
 ### 1.2.1. Math
 
 For examlpe here some operators for math:
@@ -179,5 +178,5 @@ Tree:
 
 ## 3.2. Docs for utils
 
-I don't know where to put a large [NOT NOW] file for this module, so it will be [here](utils.md)
+I don't know where to put a large documentation file for this module, so it will be [here](utils.md).
 

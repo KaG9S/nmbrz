@@ -71,7 +71,6 @@ def my_function():
     pass
 ```
 
-
 ---
 
 # The end

@@ -13,14 +13,20 @@
 
 # 0. Pre-release
 
-Has no releases and packages
+Range: [e1ee3bd](https://github.com/KaG9S/nmbrz/commit/e1ee3bd42755839817fc6f9f1d9b4e191b379499) - [...](https://github.com/KaG9S/nmbrz)
+
+Has almost no releases and packages
 
 ## 0.1. First version
 
-- Created first structure of this ~~module~~ packtage
+Range: [c41e3e6](https://github.com/KaG9S/nmbrz/commit/c41e3e6ecf24a409cac073daa9a714e29832d3e7)
+
+- Created first structure of this ~~module~~ package
 - added manifest, docs, license, src and 1st nmbrz version
 - modified readme and gitignore
 
 ## 0.0. Initial commit
+
+Range: [e1ee3bd](https://github.com/KaG9S/nmbrz/commit/e1ee3bd42755839817fc6f9f1d9b4e191b379499)
 
 Initial commit.

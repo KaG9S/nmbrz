@@ -4,6 +4,10 @@ For each version look at the tree to get all information
 
 ---
 
-# 0.1
+# 0.2
 
-~~sorry just want to finish it already~~
+- create all md-files: done
+- fix bugs with sde: in work
+- new modules or files in package: done
+- publish to [PyPi](https://pypi.org): in work (will be on github lerease release)
+- idk finish
