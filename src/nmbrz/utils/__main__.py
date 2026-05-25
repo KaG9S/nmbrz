@@ -5,6 +5,10 @@
 from time import time
 
 def timer(func):
+    """
+    Timer utility for functions
+    """
+
     def wrapper(*args, **kwargs):
         start_time = time()
         result = func(*args, **kwargs)
