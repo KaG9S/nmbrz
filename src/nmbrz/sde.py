@@ -32,9 +32,38 @@ class Nmbr:
         elif t in [tuple, list]:
             assert len(inp) == 3
             assert inp[0] in [-1, 0, 1]
+            assert type(inp[1]) == list
             assert inp[2] % 1 == 0
 
-            self.atr = inp
+            if type(inp) == tuple: inp = [inp[0], inp[1], inp[2]]
+
+            cycle = 0
+            def reformat(i: int):
+                global inp
+                if inp[1][i] % 1 != 0:
+                    if i == len(inp[1]) - 1:
+                        inp[1].append(0)
+                        inp[2] -= 1
+                    inp[1][i+1] += int((inp[1][i] % 1) * 1000)
+                    inp[1][i] //= 1000
+                    reformat(i+1)
+                if inp[1][i] != inp[1][i] % 1000:
+                    if i == 0:
+                        inp[1] = [0] + inp[1]
+                    inp[1][i-1] += inp[1][i] // 1000
+                    inp[1][i] %= 1000
+                    reformat(0)
+
+            while cycle < len(inp[1]):
+                reformat(cycle)
+                cycle += 1
+            while len(inp[1]) > 1 and inp[1][0] == 0:
+                inp[1] = inp[1][1:]
+            while len(inp[1]) > 1 and inp[1][-1] == 0:
+                inp[1] = inp[1][:-1]
+                inp[2] += 3
+
+            inp = tuple(inp[0:3])
 
         else:
             raise TypeError("Input must be of type tuple, list, int, or float. Got " + t.__name__)
