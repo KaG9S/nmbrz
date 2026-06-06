@@ -38,24 +38,26 @@ class Nmbr:
             if type(inp) == tuple: inp = [inp[0], inp[1], inp[2]]
 
             cycle = 0
-            def reformat(i: int):
-                global inp
-                if inp[1][i] % 1 != 0:
-                    if i == len(inp[1]) - 1:
-                        inp[1].append(0)
+            def reformat(i: int, inp):
+                l = inp[1]
+                if l[i] % 1 != 0:
+                    if i == len(l) - 1:
+                        l.append(0)
                         inp[2] -= 1
-                    inp[1][i+1] += int((inp[1][i] % 1) * 1000)
-                    inp[1][i] //= 1000
-                    reformat(i+1)
-                if inp[1][i] != inp[1][i] % 1000:
+                    l[i+1] += int((l[i] % 1) * 1000)
+                    l[i] //= 1000
+                    reformat(i+1, inp)
+                if l[i] != l[i] % 1000:
                     if i == 0:
-                        inp[1] = [0] + inp[1]
-                    inp[1][i-1] += inp[1][i] // 1000
-                    inp[1][i] %= 1000
-                    reformat(0)
+                        l = [0] + l
+                    l[i-1] += l[i] // 1000
+                    l[i] %= 1000
+                    reformat(0, inp)
+                inp[1] = l
+                return inp
 
             while cycle < len(inp[1]):
-                reformat(cycle)
+                inp = reformat(cycle, inp)
                 cycle += 1
             while len(inp[1]) > 1 and inp[1][0] == 0:
                 inp[1] = inp[1][1:]
@@ -90,45 +92,37 @@ class Nmbr:
 
     # math
     def __add__(self, other):
-        if self() == (0, [0], 0):
-            return other
-        if other() == (0, [0], 0):
-            return self
+        if self() == (0, [0], 0): return other
+        if other() == (0, [0], 0): return self
 
         sa, da, ea = self()
         sb, db, eb = other()
         sc = 1
         ec = min(ea, eb)
-        if len(da) >= len(db):
-            db = [0]*(len(da) - len(db)) + db
-        else:
-            da = [0]*(len(db) - len(da)) + da
+        sa = sa / ec
+        sb = sb / ec
 
-        dc = [0] * len(da)
-        for i in range(len(da)):
-            dc[i] = da[i] + db[i]
-            if dc[i] >= 10**3:
-                dc[i] -= 10**3
-                if i == 0: dc = [0] + dc
-                dc[i-1] += 1
+        if ea > eb: da += [0]*(ea-eb)
+        else: db += [0]*(eb-ea)
+
+        if len(da) > len(db): db = [0]*(len(da)-len(db)) + db
+        else: da = [0]*(len(db)-len(da)) + da
+
+        dc = []
+        for i in range(len(da)): dc.append(da[i]*sa + db[i]*sb)
 
         ans = Nmbr((sc, dc, ec))
         return ans
     def __sub__(self, other):
-        if self() == (0, [0], 0):
-            sb, db, eb = other()
-            b = Nmbr((-sb, db, eb))
-            return b
+        if self() == (0, [0], 0): return -other
         elif other() == (0, [0], 0): return self
+        return self + (-other)
+    def __mul__(self, other):
+        if self() == (0, [0], 0) or \
+        other() == (0, [0], 0): return Nmbr((0, [0], 0))
 
-        sb, db, eb = other()
-        other = Nmbr((-sb, db, eb))
-        ans = self + other
-        return ans
-    def __mul__(self, other): # not work
         sa, da, ea = self()
         sb, db, eb = other()
-        if (0, [0], 0) in [self(), other()]: return Nmbr((0, [0], 0))
 
         sc = sa * sb
         ec = ea + eb
@@ -137,19 +131,20 @@ class Nmbr:
         dc = [i*x for i in da]
         ans = Nmbr((sc, dc, ec))
         return ans
-    def __truediv__(self, other): # not work
-        sa, da, ea = self()
-        sb, db, eb = other()
+    def __truediv__(self, other):
         if other() == (0, [0], 0): raise ZeroDivisionError("Division by zero is not allowed.")
         elif self() == (0, [0], 0): return Nmbr((0, [0], 0))
 
+        sa, da, ea = self()
+        sb, db, eb = other()
         b_ = 0
         for i in db: b_ += i + b_*(10**3)
         dc = [(i)/b_ for i in da]
         ans = Nmbr((sa/sb, dc, ea - eb))
         return ans
     def __floordiv__(self, other):
-        return int(self / other)
+        res = self / other
+        return res - (res % Nmbr(1))
     def __pow__(self, other: float):
         if self() == (0, [0], 0) and other > 0: return Nmbr((0, [0], 0))
         elif self() == (0, [0], 0) and other <= 0: raise ZeroDivisionError("0 cannot be raised to a negative power.")
@@ -187,14 +182,31 @@ class Nmbr:
         return self.atr == other.atr
     def __ne__(self, other):
         return self.atr != other.atr
-    def __lt__(self, other):
-        return float(self) < other.real
+    def __lt__(self, other): # main compare
+        if self == (0, [0], 0): return bool(1+other()[0])
+        elif other == (0, [0], 0): return bool(-1+self()[0])
+
+        mod = 0
+        if self()[0] == other()[0]:
+            mod = bool(self()[0])
+        else:
+            return self()[0] < other()[0]
+
+        if self()[2] < other()[2]: r = True
+        if self()[2] > other()[2]: r = False
+        else:
+            if len(self()[1]) < len(other()[1]): r = True
+            elif len(self()[1]) > len(other()[1]): r = False
+            else: r = tuple(self()[1]) < tuple(self()[1])
+        
+        return r == mod
+
     def __le__(self, other):
-        return float(self) <= other.real
+        return self < other or self == other
     def __gt__(self, other):
-        return float(self) > other.real
+        return other < self
     def __ge__(self, other):
-        return float(self) >= other.real
+        return other < self or other == self
 
     # iterations
     def __len__(self):
@@ -204,9 +216,9 @@ class Nmbr:
     def __bool__(self):
         return self.atr != (0, [0], 0)
     def __or__(self, other):
-        return any([bool(self), bool(other)])
+        return bool(self) or bool(other)
     def __and__(self, other):
-        return all([bool(self), bool(other)])
+        return bool(self) and bool(other)
     def __not__(self):
-        return self() == (0, [0], 0)
+        return not bool(self)
 

@@ -1,5 +1,9 @@
 # UTILITES FOR NMBRZ PACKAGE
 
+"""
+File with alone ultilites for [Utils](./__init__.py)
+"""
+
 # timer: to time a function
 
 from time import time

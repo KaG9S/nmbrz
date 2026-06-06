@@ -16,34 +16,28 @@ def sigma(start: int, end: int, func) -> Nmbr:
     result = Nmbr((0, [0], 0))
     for i in range(start, end):
         loop = func(i)
-        if loop() == (0, [0], 0):
-            continue
+        if loop() == (0, [0], 0): continue
         result += loop
     return result
 def prod(start: int, end: int, func) -> Nmbr:
     result = Nmbr((1, [1], 0))
     for i in range(start, end):
         loop = func(i)
-        if loop() == (0, [0], 0):
-            return Nmbr((0, [0], 0))
+        if loop() == (0, [0], 0): return Nmbr((0, [0], 0))
         result *= loop
     return result
 def factorial(a: int):
-    if a in [0, 1]:
-        return Nmbr((1, [1], 0))
-    elif a < 0 or a % 1 != 0:
-        raise ValueError("Factorial is only defined for non-negative integers.")
+    if a in [0, 1]: return Nmbr((1, [1], 0))
+    elif a < 0 or a % 1 != 0: raise ValueError("Factorial is only defined for non-negative integers.")
+
     return prod(1, a+1, lambda x: Nmbr(x))
 def sin(a, terms = 10):
     a = a % (pi * Nmbr(2))
-    if a() == (0, [0], 0):
-        return Nmbr((0, [0], 0))
-    elif a() == (pi / Nmbr(2))():
-        return Nmbr((1, [1], 0))
-    elif a == pi():
-        return Nmbr((0, [0], 0))
-    elif a() == (pi * Nmbr(1.5))():
-        return Nmbr((-1, [1], 0))
+    if a() == (0, [0], 0): return Nmbr((0, [0], 0))
+    elif a() == (pi / Nmbr(2))(): return Nmbr((1, [1], 0))
+    elif a == pi(): return Nmbr((0, [0], 0))
+    elif a() == (pi * Nmbr(1.5))(): return Nmbr((-1, [1], 0))
+
     else:
         def term(x):
             n = int(x)

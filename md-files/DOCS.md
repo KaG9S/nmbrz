@@ -7,12 +7,11 @@ Table of contents:
 0. [Install](#0-install)
 1. [SDE and nmbr's](#1-sde-and-nmbrs)
   1. [Start](#11-start)
-  2. [Operations](#12-operations)
-    0. [Type convertions](#120-type-convertions)
-    1. [Math](#121-math)
-    2. [Iterations](#122-iterations)
-    3. [Comparison](#123-comparison)
-    4. [Bool operations](#124-bool-operations)
+  2. [Type convertions](#120-type-convertions)
+  3. [Math](#121-math)
+  4. [Iterations](#122-iterations)
+  5. [Comparison](#123-comparison)
+  6. [Boolean operations](#124-boolean-operations)
 2. [Mth module](#2-mth-module)
   1. [Function usage](#21-function-usage)
   2. [Constants' formulas](#22-constants-formulas)
@@ -51,11 +50,10 @@ To init some new numbers, write this
 NEW_NMBR_NUMBER = Nmbr(YOUR_START_NUMBER)
 ```
 
-## 1.2. Operations
 
 Now we can do almost anything with your nmbr (we will call "nmbr" any number with SDE repr).
 
-### 1.2.0 Type convertions
+## 1.2 Type convertions
 
 These nmbr's can be coverted in to:
 
@@ -68,7 +66,7 @@ These nmbr's can be coverted in to:
 3.141592653589E+0
 ```
 
-### 1.2.1. Math
+## 1.3. Math
 
 For examlpe here some operators for math:
 
@@ -77,7 +75,7 @@ n1 + - * / % // n2
 n1 ** float
 ```
 
-### 1.2.2. Iterations
+## 1.4. Iterations
 
 So how you remember, we have S**D**E *(D - digits)*, and this is list, so we can read it, get length and change some elements
 
@@ -87,7 +85,7 @@ _ = n1[0]
 n1[i] = 0
 ```
 
-### 1.2.3. Comparison
+## 1.5. Comparison
 
 Like greater, smaller, equals, not equals ect.
 * all from float(n) conv or n() call
@@ -96,7 +94,7 @@ Like greater, smaller, equals, not equals ect.
 n1 == != < > <= >= n2
 ```
 
-### 1.2.4. Bool operations
+## 1.6. Boolean operations
 
 All from `bool()` convertion
 

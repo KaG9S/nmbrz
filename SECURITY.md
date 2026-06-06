@@ -2,10 +2,11 @@
 
 ## Supported Versions
 
-| Version | Supported        |
-| ------- | ---------------- |
-| >1.0    | ✅ full support   |
-| <1.0    | ⛔ not recomented |
+| Version  | Supported                   |
+| -------  | --------------------------- |
+| >1.0     | ✅ full support              |
+| >=0.2    | supported with solved issues |
+| 0.1      | ⛔ not recomented            |
 
 ## Reporting a bug or issue
 

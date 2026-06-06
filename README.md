@@ -11,6 +11,7 @@ Smallest module for numbers!</p>
 1. [Some docs](#1-some-docs)
    1. [Nmbrz module (SDE)](#11-nmbrz-module-sde-file)
    2. [UTILS](#12-utils-file)
+2. [End](#the-end)
 
 ---
 
@@ -33,9 +34,9 @@ Full docs markdown file: [md-files/DOCS.md](md-files/DOCS.md)
 
 Using custom class `Nmbr` which can save number in new reprasantation "SDE":
 
-- S - sign: can be 1 if positive; -1 if negative; 0 if number is 0,
-- D - digits: list of digits' groops by decimal places
-- E - exponent: +1 for every 0 at the end of number until the digits
+- Sign: can be 1 if positive; -1 if negative; 0 if number is 0,
+- Digits: list of digits' groops by decimal places
+- Exponent: +1 for every 0 at the end of number until the digits
 and -1 for every 0 after comma before digits; 0 if number is 0
 
 Then we got number by `sign * digits * (10 ** Exponent)` and our arguments by `(sign, digits, exponent)`.
@@ -54,7 +55,8 @@ For examlpe:
 > [!NOTE]
 > There's a full docs for utils module: [md-files/utils.md](md-files/utils.md)
 
-Table of contents:
+**Table of contents**:
+
 - [main.py](src/nmbrz/utils/__main__.py):
   - [timer()](#utils-timer)
 
@@ -65,6 +67,7 @@ Table of contents:
 **A decorator to get a time for a function**
 
 Usage:
+
 ```python
 @timer
 def my_function():

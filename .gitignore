@@ -22,6 +22,7 @@ test.*
 drafts/
 downloads/
 example.*
+*beta*
 
 # Distribution
 dist/

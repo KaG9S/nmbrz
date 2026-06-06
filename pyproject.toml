@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nmbrz"
-version = "v0.1"
+version = "v0.2w"
 requires-python = ">=3.8"
 authors = [
   {name = "George", email = "jokageorgik@gmail.com"}
