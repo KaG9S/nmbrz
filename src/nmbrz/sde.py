@@ -99,6 +99,9 @@ class Nmbr:
         sb, db, eb = other()
         sc = 1
         ec = min(ea, eb)
+
+
+
         if len(da) >= len(db):
             db = [0]*(len(da) - len(db)) + db
         else:

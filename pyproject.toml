@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nmbrz"
-version = "v0.1"
+version = "v0.2"
 requires-python = ">=3.8"
 authors = [
   {name = "George", email = "jokageorgik@gmail.com"}
@@ -18,7 +18,7 @@ license = "MIT"
 license-files = ["LICENSE.md"]
 keywords = ["nmbrz", "calculations"]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Stable",
   "Calculations"
   "Programming Language :: Python"
 ]
@@ -28,3 +28,5 @@ Documentation = "https://github.com/KaG9S/nmbrz/md-files/DOCS.md"
 Repository = "https://github.com/KaG9S/nmbrz"
 Issues = "https://github.com/KaG9S/nmbrz/issues"
 Changelog = "https://github.com/KaG9S/nmbrz/md-files/CHANGELOG.md"
+Manifest = "https://github.com/KaG9S/nmbrz/md-files/MANIFEST.md"
+Security-policy = "https://github.com/KaG9S/nmbrz/SECURITY.md"
