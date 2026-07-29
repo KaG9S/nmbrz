@@ -1,4 +1,4 @@
-import __main__
+from main import *
 
 """
 # UTILS FOR NMBRZ PACKAGE
