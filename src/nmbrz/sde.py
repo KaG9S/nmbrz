@@ -8,11 +8,13 @@ class Nmbr:
     - Exponent: integer representing the power of 10
     """
 
+    base = 3
+
     def __init__(self, inp):
         t = type(inp)
 
         if t in [int, float]:
-            self.atr = (0, [0], 0)
+            atr = (0, [0], 0)
             if inp != 0:
                 inp /= (sign := (1 if inp > 0 else -1))
                 digits = []
@@ -21,13 +23,13 @@ class Nmbr:
                     inp *= 10
                     exponent -= 1
                 while inp != 0:
-                    digits.append(int(inp % 10**3))
-                    inp = int(inp / 10**3)
+                    digits.append(int(inp % 10**Nmbr.base))
+                    inp = int(inp / 10**Nmbr.base)
                     exponent += 3
-                inp *= 10**3
+                inp *= 10**Nmbr.base
                 exponent -= 3
                 digits.reverse()
-                self.atr = (sign, digits, exponent)
+                atr = (sign, digits, exponent)
 
         elif t in [tuple, list]:
             assert len(inp) == 3
@@ -38,26 +40,9 @@ class Nmbr:
             if type(inp) == tuple: inp = [inp[0], inp[1], inp[2]]
 
             cycle = 0
-            def reformat(i: int, inp):
-                l = inp[1]
-                if l[i] % 1 != 0:
-                    if i == len(l) - 1:
-                        l.append(0)
-                        inp[2] -= 1
-                    l[i+1] += int((l[i] % 1) * 1000)
-                    l[i] //= 1000
-                    reformat(i+1, inp)
-                if l[i] != l[i] % 1000:
-                    if i == 0:
-                        l = [0] + l
-                    l[i-1] += l[i] // 1000
-                    l[i] %= 1000
-                    reformat(0, inp)
-                inp[1] = l
-                return inp
 
             while cycle < len(inp[1]):
-                inp = reformat(cycle, inp)
+                inp, cycle = reformat(cycle, inp)
                 cycle += 1
             while len(inp[1]) > 1 and inp[1][0] == 0:
                 inp[1] = inp[1][1:]
@@ -69,6 +54,8 @@ class Nmbr:
 
         else:
             raise TypeError("Input must be of type tuple, list, int, or float. Got " + t.__name__)
+
+        self.atr = atr
     def __call__(self):
         return self.atr
 
@@ -78,7 +65,7 @@ class Nmbr:
         if self.atr == (0, [0], 0):
             return 0.0
         num = 0
-        for i in range(len(digits)): num = num * 1000 + digits[i]
+        for i in range(len(digits)): num = num * 10**Nmbr.base + digits[i]
         return float(sign * num * (10 ** exponent))
     def __int__(self):
         return int(float(self))
@@ -94,6 +81,8 @@ class Nmbr:
     def __add__(self, other):
         if self() == (0, [0], 0): return other
         if other() == (0, [0], 0): return self
+        if self()[0] == other()[0] and self()[0] == -1:
+            return -((-self) + (-other))
 
         sa, da, ea = self()
         sb, db, eb = other()
@@ -102,14 +91,21 @@ class Nmbr:
         sa = sa / ec
         sb = sb / ec
 
-        if ea > eb: da += [0]*(ea-eb)
-        else: db += [0]*(eb-ea)
+        da = [i*(10**( 3-(eb-ec)%3 )) for i in da]
+        it = 0
+        while it < len(da): da[it], it = reformat(it, da)
+        db = [i*(10**( 3-(ea-ec)%3 )) for i in db]
+        it = 0
+        while it < len(db): da[it] = reformat(it, db)
 
-        if len(da) > len(db): db = [0]*(len(da)-len(db)) + db
-        else: da = [0]*(len(db)-len(da)) + da
+        da = [0]*(eb-ec) + da
+        db = [0]*(ea-ec) + db
+
+        db = db + [0]*(len(da)-len(db))
+        da = da + [0]*(len(db)-len(da))
 
         dc = []
-        for i in range(len(da)): dc.append(da[i]*sa + db[i]*sb)
+        for i in range(len(da)): dc.append((da[i]*sa + db[i]*sb)/sa)
 
         ans = Nmbr((sc, dc, ec))
         return ans
@@ -138,7 +134,7 @@ class Nmbr:
         sa, da, ea = self()
         sb, db, eb = other()
         b_ = 0
-        for i in db: b_ += i + b_*(10**3)
+        for i in db: b_ += i + b_*(10**Nmbr.base)
         dc = [(i)/b_ for i in da]
         ans = Nmbr((sa/sb, dc, ea - eb))
         return ans
@@ -183,24 +179,7 @@ class Nmbr:
     def __ne__(self, other):
         return self.atr != other.atr
     def __lt__(self, other): # main compare
-        if self == (0, [0], 0): return bool(1+other()[0])
-        elif other == (0, [0], 0): return bool(-1+self()[0])
-
-        mod = 0
-        if self()[0] == other()[0]:
-            mod = bool(self()[0])
-        else:
-            return self()[0] < other()[0]
-
-        if self()[2] < other()[2]: r = True
-        if self()[2] > other()[2]: r = False
-        else:
-            if len(self()[1]) < len(other()[1]): r = True
-            elif len(self()[1]) > len(other()[1]): r = False
-            else: r = tuple(self()[1]) < tuple(self()[1])
-        
-        return r == mod
-
+        return (self-other)()[0] == -1
     def __le__(self, other):
         return self < other or self == other
     def __gt__(self, other):
@@ -222,3 +201,22 @@ class Nmbr:
     def __not__(self):
         return not bool(self)
 
+def reformat(i: int, inp):
+    l = inp[1]
+    if l[i] % 1 != 0:
+        if i == len(l) - 1:
+            l.append(0)
+            inp[2] -= 1
+        l[i+1] += int((l[i] % 1) * 10**Nmbr.base)
+        l[i] //= 10**Nmbr.base
+        inp[1] = l
+        reformat(i+1, inp)
+    if l[i] != l[i] % 10**Nmbr.base:
+        if i == 0:
+            l = [0] + l
+        l[i-1] += l[i] // 10**Nmbr.base
+        l[i] %= 10**Nmbr.base
+        inp[1] = l
+        reformat(0, inp)
+    inp[1] = l
+    return (inp, i)
